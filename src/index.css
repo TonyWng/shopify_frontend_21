@@ -11,3 +11,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: 'DMSans-Medium';
+  src: local('DMSans-Medium'), url(./Fonts/DMSans-Medium.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'DMSans-Bold';
+  src: local('DMSans-Bold'), url('./Fonts/DMSans-Bold.ttf') format('truetype');
+}

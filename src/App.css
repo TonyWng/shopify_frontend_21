@@ -1,38 +1,93 @@
+html, body, #app, #app>div {
+  height: 100%
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#particle-js {
+  position:fixed !important; 
+  height: 100vh;
+  width: 100%;
+  z-index: -100;
+  top: 0;
+  left: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.HeaderTextLgB {
+  font-family: DMSans-Bold;
+  font-size: 4em;
+  opacity: 0; 
+  animation: fadeInUp 2s ease-in-out 0s forwards;
+  margin: 0px !important; 
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.HeaderTextMB {
+  font-family: DMSans-Bold;
+  font-size: 2.5em; 
+  opacity: 0;
+  animation: fadeInDown 2s ease-in-out 0s forwards;
+  animation-delay: 2s; 
+  margin: 0px !important;
 }
 
-.App-link {
-  color: #61dafb;
+.ContainerStyle {
+  margin: auto;
+  min-height: 100vh; 
 }
 
-@keyframes App-logo-spin {
+.MarginTop {
+  margin-top: 10em !important; 
+}
+
+.SearchBarStyle {
+  margin-top: 3em; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+@keyframes fadeIn {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1; 
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0,-100%,0);
+    transform: translate3d(0,100%,0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none; 
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0,100%,0);
+    transform: translate3d(0,-80%,0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none; 
   }
 }
