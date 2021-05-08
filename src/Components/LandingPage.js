@@ -1,11 +1,10 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import { Search, Segment, List, Header, Modal, Icon, Button} from 'semantic-ui-react';
+import { Search, Segment, List, Header, Modal, Icon, Button } from 'semantic-ui-react';
 import '../App.css'
+import { connect } from "react-redux";
 
-const OMDBAPIKey = "http://www.omdbapi.com/?i=tt3896198&apikey=5adcacf&";
-
-export default class SearchComponent extends React.Component {
+class LandingPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -13,14 +12,19 @@ export default class SearchComponent extends React.Component {
             savedMovies: [],
             nominations: [],
             helpModalOpen: false,
+            value: ""
         }
     }
 
     searchMovie = (event) => {
-        if (event.target.value.length == 0) {
+        if (event.target.value.length === 0) {
             return;
         } else {
             //Since searchResults must be array 
+            this.setState({
+                value: event.target.value
+            })
+
             this.setState({
                 searchResults: []
             })
@@ -28,7 +32,7 @@ export default class SearchComponent extends React.Component {
             fetch('http://www.omdbapi.com/?i=tt3896198&apikey=5adcacf&t=' + event.target.value + '&type=movie&plot=short')
                 .then((data) => data.json())
                 .then((data) => {
-                    if (data.Title == undefined) {
+                    if (data.Title === undefined) {
                         return;
                     }
                     console.log(data)
@@ -49,6 +53,46 @@ export default class SearchComponent extends React.Component {
         }
     }
 
+    checkDuplicate = (movieTitle) => {
+        let isDuplicate = false; 
+        this.props.movieList.forEach( (movie) => {
+            if (movieTitle === movie.Title) {
+                console.log("here?")
+                isDuplicate = true; 
+            }
+        })
+        return isDuplicate
+    }
+
+    addMovieToList = (e, data) => {
+        console.log(data.results[0].title)
+        fetch('http://www.omdbapi.com/?i=tt3896198&apikey=5adcacf&t=' + data.results[0].title + '&type=movie&plot=short')
+            .then((data) => data.json())
+            .then((data) => {
+                if (data.Title === undefined) {
+                    return;
+                }
+
+                //Check for duplicate
+                if (!this.checkDuplicate(data.Title)) {
+                    this.props.dispatch({
+                        type: "ADD_MOVIE_TO_LIST",
+                        data: data
+                    })
+                    window.confirm("Movie Succesfully Added to your List!")
+                } else {
+                    window.alert("This Movie Has Already Been Added to your List!")
+                }
+                
+                this.setState({
+                    value: ""
+                })
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+
     render() {
         return (
             <Container className="ContainerStyle">
@@ -67,6 +111,8 @@ export default class SearchComponent extends React.Component {
                             size='huge'
                             results={this.state.searchResults}
                             onSearchChange={this.searchMovie}
+                            onResultSelect={this.addMovieToList}
+                            value={this.state.value}
                         />
                     </Col>
                 </Row>
@@ -114,8 +160,8 @@ export default class SearchComponent extends React.Component {
                                 </Segment>
                             </Modal.Content>
                             <Modal.Actions>
-                            <Button color='green' onClick={() => this.setState({helpModalOpen: false})}>
-                                Got it!
+                                <Button color='green' onClick={() => this.setState({ helpModalOpen: false })}>
+                                    Got it!
                             </Button>
                             </Modal.Actions>
                         </Modal>
@@ -126,3 +172,9 @@ export default class SearchComponent extends React.Component {
         )
     }
 }
+
+const mapStateToProps = (state) => ({
+    movieList: state.movieList
+})
+
+export default connect(mapStateToProps)(LandingPage)
