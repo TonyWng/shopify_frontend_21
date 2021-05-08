@@ -1,10 +1,19 @@
 import { createStore } from 'redux';
-// import { persistStore } from 'redux-persist';
+import { persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage'
+import { persistReducer } from 'redux-persist'
 
 const initialState = {
     movieNominations: [],
     movieList: [],
 }
+
+const persistConfig = {
+    key: 'root',
+    storage, 
+    whitelist: ['movieList', 'movieNominations']
+}
+
 function reducer(state = initialState, action) {
     switch(action.type) {
         case "INCREMENT":
@@ -18,27 +27,13 @@ function reducer(state = initialState, action) {
                 ...state,
                 movieList: newMovieList
             }
-            // console.log("hello")
-            // console.log(action.data)
-            // let newMovieList = [...state.MovieList]
-            // newMovieList.push(action.data)
-            // return Object.assign({}, state, {
-            //     MovieList: newMovieList
-            // })
-    
-                // ...state,
-                // movieList: state.movieList.concat(action.data)
-                // MovieList: [...state.MovieList, action.data]
-
         default:
             return state; 
     }
 }
 
-export const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+export const store = createStore(persistReducer(persistConfig, reducer), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
+export const persistor = persistStore(store)
 
-
-// export const persistor = persistStore(store)
-
-export default {store};
+export default {store, persistor};
