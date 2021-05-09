@@ -53,7 +53,6 @@ const MovieCard = ({ movieList, movieNomination, displayPersonalList, nomination
                                 </Row>
                             )
                         } else {
-                            console.log("empty")
                             return null
                         }
                     })}
@@ -71,7 +70,6 @@ const MovieCard = ({ movieList, movieNomination, displayPersonalList, nomination
                 <div style={{ marginTop: "60px" }}>
                     {Object.keys(movieNomination).map((key, _) => {
                         const movie = movieNomination[key]
-                        console.log(movie.Title)
                         if (movie) {
                             return (
                                 <Row style={{ marginTop: "30px" }} className="justify-content-md-center">

@@ -32,7 +32,7 @@ class LandingPage extends React.Component {
                 if (data.Title === undefined) {
                     return;
                 }
-                console.log(data)
+
                 let movieObj = {
                     title: data.Title,
                     image: data.Poster,
@@ -65,7 +65,6 @@ class LandingPage extends React.Component {
     }
 
     addMovieToList = (e, data) => {
-        console.log(data.results[0].title)
         fetch('http://www.omdbapi.com/?i=tt3896198&apikey=5adcacf&t=' + data.results[0].title + '&type=movie&plot=short')
             .then((data) => data.json())
             .then((data) => {
