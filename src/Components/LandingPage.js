@@ -3,64 +3,63 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { Search, Segment, List, Header, Modal, Icon, Button } from 'semantic-ui-react';
 import '../App.css'
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
 
 class LandingPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             searchResults: [],
-            savedMovies: [],
-            nominations: [],
             helpModalOpen: false,
             value: ""
         }
     }
 
     searchMovie = (event) => {
-        if (event.target.value.length === 0) {
-            return;
-        } else {
-            //Since searchResults must be array 
-            this.setState({
-                value: event.target.value
-            })
+        //Since searchResults must be array 
+        this.setState({
+            value: event.target.value
+        })
 
-            this.setState({
-                searchResults: []
-            })
+        this.setState({
+            searchResults: []
+        })
 
-            fetch('http://www.omdbapi.com/?i=tt3896198&apikey=5adcacf&t=' + event.target.value + '&type=movie&plot=short')
-                .then((data) => data.json())
-                .then((data) => {
-                    if (data.Title === undefined) {
-                        return;
-                    }
-                    console.log(data)
-                    let movieObj = {
-                        title: data.Title,
-                        image: data.Poster,
-                        price: data.Year,
-                    }
+        fetch('http://www.omdbapi.com/?i=tt3896198&apikey=5adcacf&t=' + event.target.value + '&type=movie&plot=short')
+            .then((data) => data.json())
+            .then((data) => {
+                if (data.Title === undefined) {
+                    return;
+                }
+                console.log(data)
+                let movieObj = {
+                    title: data.Title,
+                    image: data.Poster,
+                    price: data.Year,
+                }
 
-                    let newResult = this.state.searchResults.concat(movieObj);
-                    this.setState({
-                        searchResults: newResult,
-                    })
+                let newResult = this.state.searchResults.concat(movieObj);
+                this.setState({
+                    searchResults: newResult,
                 })
-                .catch((error) => {
-                    console.log(error)
-                })
-        }
+            })
+            .catch((error) => {
+                console.log(error)
+            })
     }
 
     checkDuplicate = (movieTitle) => {
-        let isDuplicate = false; 
-        this.props.movieList.forEach( (movie) => {
+        let isDuplicate = false;
+        this.props.movieList.forEach((movie) => {
             if (movieTitle === movie.Title) {
-                console.log("here?")
+                isDuplicate = true;
+            }
+        });
+        this.props.movieNomination.forEach((movie) => {
+            if (movieTitle === movie.Title) {
                 isDuplicate = true; 
             }
-        })
+        });
         return isDuplicate
     }
 
@@ -83,7 +82,7 @@ class LandingPage extends React.Component {
                 } else {
                     window.alert("This Movie Has Already Been Added to your List!")
                 }
-                
+
                 this.setState({
                     value: ""
                 })
@@ -168,13 +167,23 @@ class LandingPage extends React.Component {
 
                     </Col>
                 </Row>
+                <Row className="justify-content-md-center">
+                    <Col sm={4}>
+                        <Link to="/MoviePage">
+                            <Button color="blue" style={{ marginTop: "60px", fontSize: "15px" }}>
+                                <h1 className="ButtonText">View Movie Selections!</h1>
+                            </Button>
+                        </Link>
+                    </Col>
+                </Row>
             </Container>
         )
     }
 }
 
 const mapStateToProps = (state) => ({
-    movieList: state.movieList
+    movieList: state.movieList,
+    movieNomination: state.movieNominations
 })
 
 export default connect(mapStateToProps)(LandingPage)

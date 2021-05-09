@@ -6,6 +6,7 @@ import { persistReducer } from 'redux-persist'
 const initialState = {
     movieNominations: [],
     movieList: [],
+    displayPersonalList: true, 
 }
 
 const persistConfig = {
@@ -16,16 +17,34 @@ const persistConfig = {
 
 function reducer(state = initialState, action) {
     switch(action.type) {
-        case "INCREMENT":
-            return {
-                count: state.count += 1
-            };
         case "ADD_MOVIE_TO_LIST":
             let newMovieList = [...state.movieList]
             newMovieList.push(action.data)
             return {
                 ...state,
                 movieList: newMovieList
+            }
+        case "REMOVE_MOVIE_FROM_LIST":
+            return {
+                ...state,
+                movieList: state.movieList.filter((movie) => movie.Title != action.Title),
+            }
+        case "REMOVE_MOVIE_FROM_NOMINATIONS":
+            return {
+                ...state,
+                movieNominations: state.movieNominations.filter((movie) => movie.Title != action.Title)
+            }
+        case "NOMINATE_MOVIE":
+            let newNominationsList = [...state.movieNominations]
+            newNominationsList.push(action.data)
+            return {
+                ...state,
+                movieNominations: newNominationsList
+            }
+        case "TOGGLE_MOVIE_LIST":
+            return {
+                ...state,
+                displayPersonalList: !state.displayPersonalList
             }
         default:
             return state; 
