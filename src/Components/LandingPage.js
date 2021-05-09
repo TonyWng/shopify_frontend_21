@@ -65,7 +65,7 @@ class LandingPage extends React.Component {
     }
 
     addMovieToList = (e, data) => {
-        fetch('http://www.omdbapi.com/?i=tt3896198&apikey=5adcacf&t=' + data.results[0].title + '&type=movie&plot=short')
+        fetch('https://www.omdbapi.com/?i=tt3896198&apikey=5adcacf&t=' + data.results[0].title + '&type=movie&plot=short')
             .then((data) => data.json())
             .then((data) => {
                 if (data.Title === undefined) {
