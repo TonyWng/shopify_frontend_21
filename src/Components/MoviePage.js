@@ -5,11 +5,13 @@ import { connect, useDispatch } from "react-redux";
 import { Button, Icon, Popup } from 'semantic-ui-react';
 import MovieCard from './MovieCard';
 import { Link } from 'react-router-dom';
+import ParticleComponent from './ParticleComponent';
 
 const MoviePage = ({displayPersonalList, nominationCount}) => {
     const dispatch = useDispatch()
         return (
             <Container className="ContainerStyle">
+                <ParticleComponent id="particle-js"/>
                 <Link to="/">
                 <Icon className="BackButton" style={{fontSize: "50px"}} name="arrow alternate circle left outline"/>
                 </Link>

@@ -4,6 +4,7 @@ import { Search, Segment, List, Header, Modal, Icon, Button } from 'semantic-ui-
 import '../App.css'
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
+import ParticleComponent from './ParticleComponent';
 
 class LandingPage extends React.Component {
     constructor(props) {
@@ -95,6 +96,7 @@ class LandingPage extends React.Component {
     render() {
         return (
             <Container className="ContainerStyle">
+                <ParticleComponent id="particle-js"/>
                 <Row className="MarginTop">
                     <Col sm={12}>
                         <h1 className="HeaderTextLgB">Welcome to the Shoppies</h1>
