@@ -7,12 +7,13 @@ const initialState = {
     movieNominations: [],
     movieList: [],
     displayPersonalList: true, 
+    nominationCount: 0,
 }
 
 const persistConfig = {
     key: 'root',
     storage, 
-    whitelist: ['movieList', 'movieNominations']
+    whitelist: ['movieList', 'movieNominations', 'nominationCount']
 }
 
 function reducer(state = initialState, action) {
@@ -32,14 +33,16 @@ function reducer(state = initialState, action) {
         case "REMOVE_MOVIE_FROM_NOMINATIONS":
             return {
                 ...state,
-                movieNominations: state.movieNominations.filter((movie) => movie.Title != action.Title)
+                movieNominations: state.movieNominations.filter((movie) => movie.Title != action.Title),
+                nominationCount: state.nominationCount -= 1
             }
         case "NOMINATE_MOVIE":
             let newNominationsList = [...state.movieNominations]
             newNominationsList.push(action.data)
             return {
                 ...state,
-                movieNominations: newNominationsList
+                movieNominations: newNominationsList,
+                nominationCount: state.nominationCount += 1
             }
         case "TOGGLE_MOVIE_LIST":
             return {

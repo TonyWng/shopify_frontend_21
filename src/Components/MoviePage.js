@@ -2,11 +2,11 @@ import React from 'react';
 import { Container, Row, Col} from 'react-bootstrap';
 import '../App.css';
 import { connect, useDispatch } from "react-redux";
-import { Button, Icon } from 'semantic-ui-react';
+import { Button, Icon, Popup } from 'semantic-ui-react';
 import MovieCard from './MovieCard';
 import { Link } from 'react-router-dom';
 
-const MoviePage = ({displayPersonalList}) => {
+const MoviePage = ({displayPersonalList, nominationCount}) => {
     const dispatch = useDispatch()
         return (
             <Container className="ContainerStyle">
@@ -29,13 +29,21 @@ const MoviePage = ({displayPersonalList}) => {
                         </Button>
                     </Col>
                 </Row>
-                <MovieCard/>
+                <Row className="justify-content-md-center">
+                    <Col>
+                        <h1 className="ButtonText">Nomination Count: {nominationCount} <Popup content='You can only nominate 5 movies at a time, feel free to remove selections in your nomination list to free up space' trigger={<Icon fitted name="question circle"/>}/></h1>
+                    </Col>
+                </Row>
+                <Container className="ScrollableContainer">
+                    <MovieCard/>
+                </Container>  
             </Container>
         )
 }
 
 const mapStateToProps = (state) => ({
-    displayPersonalList: state.displayPersonalList
+    displayPersonalList: state.displayPersonalList,
+    nominationCount: state.nominationCount
 })
 
 export default connect(mapStateToProps)(MoviePage)

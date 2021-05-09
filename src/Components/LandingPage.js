@@ -132,23 +132,23 @@ class LandingPage extends React.Component {
                                     </Header>
                                     <List style={{ margin: 'auto', width: '50%' }} divided size='huge'>
                                         <List.Item>
-                                            <List.Icon name="edit" />
+                                            <List.Icon name="search" />
                                             <List.Content style={{ textAlign: 'left' }}>Search for a movie</List.Content>
                                         </List.Item>
                                         <List.Item>
-                                            <List.Icon name="keyboard" />
-                                            <List.Content style={{ textAlign: 'left' }}>Add your favourites to your personal list by clicking the search result</List.Content>
+                                            <List.Icon name="add" />
+                                            <List.Content style={{ textAlign: 'left' }}>Add your favourites to your personal list by selecting the search result</List.Content>
                                         </List.Item>
                                         <List.Item>
-                                            <List.Icon name="hand point right outline" />
+                                            <List.Icon name="eye" />
                                             <List.Content style={{ textAlign: 'left' }}>View your personal list</List.Content>
                                         </List.Item>
                                         <List.Item>
-                                            <List.Icon name="handshake outline" />
-                                            <List.Content style={{ textAlign: 'left' }}>Nominate your all time favourites (Max 3)</List.Content>
+                                            <List.Icon name="hand pointer" />
+                                            <List.Content style={{ textAlign: 'left' }}>Nominate your all time favourites (Max 5)</List.Content>
                                         </List.Item>
                                         <List.Item>
-                                            <List.Icon name="magnify" />
+                                            <List.Icon name="sync alternate" />
                                             <List.Content style={{ textAlign: 'left' }}>You can remove/add movies to your list/nominations at any time</List.Content>
                                         </List.Item>
                                         <List.Item>

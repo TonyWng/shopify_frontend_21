@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect, useDispatch } from 'react-redux';
-import { Card, Button } from 'semantic-ui-react';
+import { Card, Button, Transition } from 'semantic-ui-react';
 import { Row, Col, Image } from 'react-bootstrap';
 
 
 
-const MovieCard = ({ movieList, movieNomination, displayPersonalList }) => {
+const MovieCard = ({ movieList, movieNomination, displayPersonalList, nominationCount }) => {
     const dispatch = useDispatch()
 
     if (movieList && displayPersonalList) {
@@ -38,16 +38,16 @@ const MovieCard = ({ movieList, movieNomination, displayPersonalList }) => {
                                                         dispatch({ type: "NOMINATE_MOVIE", data: movie })
                                                         dispatch({ type: "REMOVE_MOVIE_FROM_LIST", Title: movie.Title })
                                                     }}
-                                                        basic
-                                                        color='green'>
+                                                    basic
+                                                    disabled={nominationCount == 5 ? true : false}
+                                                    color='green'>
                                                         NOMINATE
-                                                </Button>
+                                                    </Button>
                                                     <Button onClick={() => dispatch({ type: "REMOVE_MOVIE_FROM_LIST", Title: movie.Title })} basic color='red'>
                                                         REMOVE
-                                                </Button>
+                                                    </Button>
                                                 </div>
                                             </Card.Content>
-
                                         </Card>
                                     </Col>
                                 </Row>
@@ -87,9 +87,15 @@ const MovieCard = ({ movieList, movieNomination, displayPersonalList }) => {
                                             </Card.Content>
                                             <Card.Meta><h1 className="MetaText">{movie.Year} - {movie.Rated} - {movie.Runtime}</h1></Card.Meta>
                                             <Card.Content extra>
-                                                <Button onClick={() => dispatch({ type: "REMOVE_MOVIE_FROM_NOMINATIONS", Title: movie.Title })} basic color='red'>
+                                                <Button onClick={() => {
+                                                    dispatch({ type: "REMOVE_MOVIE_FROM_NOMINATIONS", Title: movie.Title})
+                                                    dispatch({ type: "ADD_MOVIE_TO_LIST", data: movie})
+                                                }} 
+                                                    basic 
+                                                    color='red'
+                                                    >
                                                     REMOVE
-                                            </Button>
+                                                </Button>
 
                                             </Card.Content>
 
@@ -113,7 +119,8 @@ const mapStateToProps = (state) => {
     return {
         movieList: state.movieList,
         movieNomination: state.movieNominations,
-        displayPersonalList: state.displayPersonalList
+        displayPersonalList: state.displayPersonalList,
+        nominationCount: state.nominationCount
     }
 }
 

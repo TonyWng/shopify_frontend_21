@@ -34,7 +34,13 @@ html, body, #app, #app>div {
 
 .ContainerStyle {
   margin: auto;
-  min-height: 100vh; 
+  height: 100vh; 
+}
+
+.ScrollableContainer {
+  margin-top: 30px; 
+  height: 100vh; 
+  overflow-y: scroll; 
 }
 
 .MarginTop {
