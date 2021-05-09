@@ -15,22 +15,130 @@ html, body, #app, #app>div {
   left: 0;
 }
 
-.HeaderTextLgB {
-  font-family: DMSans-Bold;
-  font-size: 4em;
-  opacity: 0; 
-  animation: fadeInUp 1s ease-in-out 0s forwards;
-  margin: 0px !important; 
+@media only screen and (max-width: 376px) {
+  .HeaderTextLgB {
+    font-family: DMSans-Bold;
+    font-size: 3em;
+    opacity: 0; 
+    animation: fadeInUp 1s ease-in-out 0s forwards;
+    margin: 0px !important; 
+  }
+
+  .HeaderTextMB {
+    font-family: DMSans-Bold;
+    font-size: 2em; 
+    opacity: 0;
+    animation: fadeInDown 1s ease-in-out 0s forwards;
+    animation-delay: 1s; 
+    margin: 0px !important;
+  }
+
+  .MoviePageHeader {
+    font-family: DMSans-Bold;
+    font-size: 2.5em;
+    opacity: 0; 
+    animation: fadeInUp 1s ease-in-out 0s forwards;
+    margin: 0px !important; 
+    padding-right: 30px;
+    padding-top: 15px;
+  }
+
+  .MoviePageSubHeader {
+    font-family: DMSans-Bold;
+    font-size: 1.5em; 
+    opacity: 0;
+    animation: fadeInDown 1s ease-in-out 0s forwards;
+    animation-delay: 1s; 
+    margin: 0px !important;
+    padding-right: 30px;
+  }
+
+  .ButtonText {
+    font-family: DMSans-Medium;
+    font-size: 1.25em; 
+  }
+
+  .MovieButton {
+    font-family: DMSans-Medium; 
+    font-size: 1.5em; 
+  }
 }
 
-.HeaderTextMB {
-  font-family: DMSans-Bold;
-  font-size: 2.5em; 
-  opacity: 0;
-  animation: fadeInDown 1s ease-in-out 0s forwards;
-  animation-delay: 1s; 
-  margin: 0px !important;
+@media only screen and (min-width: 378px) {
+  .HeaderTextLgB {
+    font-family: DMSans-Bold;
+    font-size: 4em;
+    opacity: 0; 
+    animation: fadeInUp 1s ease-in-out 0s forwards;
+    margin: 0px !important; 
+  }
+
+  .HeaderTextMB {
+    font-family: DMSans-Bold;
+    font-size: 2.5em; 
+    opacity: 0;
+    animation: fadeInDown 1s ease-in-out 0s forwards;
+    animation-delay: 1s; 
+    margin: 0px !important;
+  }
+
+  .MoviePageHeader {
+    font-family: DMSans-Bold;
+    font-size: 2.75em;
+    opacity: 0; 
+    animation: fadeInUp 1s ease-in-out 0s forwards;
+    margin: 0px !important; 
+    padding-right: 30px;
+    padding-top: 15px;
+  }
+
+  .MoviePageSubHeader {
+    font-family: DMSans-Bold;
+    font-size: 1.5em; 
+    opacity: 0;
+    animation: fadeInDown 1s ease-in-out 0s forwards;
+    animation-delay: 1s; 
+    margin: 0px !important;
+    padding-right: 30px;
+  }
+
+  .ButtonText {
+    font-family: DMSans-Medium;
+    font-size: 1.5em; 
+  }
+  .MovieButton {
+    font-family: DMSans-Medium; 
+    font-size: 2em; 
+  }
 }
+
+@media only screen and (min-width: 426px) {
+  .MoviePageHeader {
+    font-family: DMSans-Bold;
+    font-size: 4em;
+    opacity: 0; 
+    animation: fadeInUp 1s ease-in-out 0s forwards;
+    margin: 0px !important; 
+  }
+
+  .MoviePageSubHeader {
+    font-family: DMSans-Bold;
+    font-size: 2.5em; 
+    opacity: 0;
+    animation: fadeInDown 1s ease-in-out 0s forwards;
+    animation-delay: 1s; 
+    margin: 0px !important;
+  }
+
+  .MovieButton {
+    font-family: DMSans-Medium; 
+    font-size: 3em; 
+  }
+}
+
+
+
+
 
 .ContainerStyle {
   margin: auto;
@@ -55,10 +163,7 @@ html, body, #app, #app>div {
   font-size: 50px;
 }
 
-.ButtonText {
-  font-family: DMSans-Medium;
-  font-size: 1.5em; 
-}
+
 
 .MetaText {
   font-family: DMSans-Medium;

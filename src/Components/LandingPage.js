@@ -128,7 +128,7 @@ class LandingPage extends React.Component {
                             trigger={<Icon name='question' circular style={{ fontSize: "30px", marginTop: "80px" }} />}
                         >
                             <Modal.Content>
-                                <Segment id='helpSection' placeholder inverted color='blue' textAlign='center'>
+                                <Segment placeholder inverted color='blue' textAlign='center'>
                                     <Header style={{ margin: 'auto', width: '50%' }} size='huge' as='h2'>
                                         GETTING STARTED
                                     </Header>

@@ -13,21 +13,21 @@ const MoviePage = ({displayPersonalList, nominationCount}) => {
             <Container className="ContainerStyle">
                 <ParticleComponent id="particle-js"/>
                 <Link to="/">
-                <Icon className="BackButton" style={{fontSize: "50px"}} name="arrow alternate circle left outline"/>
+                <Icon className="BackButton" style={{fontSize: "40px"}} name="arrow alternate circle left outline"/>
                 </Link>
-                <Row>
+                <Row >
                     <Col>
-                        <h1 className="HeaderTextLgB">Movie Page</h1>
-                        <h1 className="HeaderTextMB">You Can View Your Saved Movies and Nominations Here!</h1>
+                        <h1 className="MoviePageHeader">Movie Page</h1>
+                        <h1 className="MoviePageSubHeader">You Can View Your Saved Movies and Nominations Here!</h1>
                     </Col>
                 </Row>
                 <Row style={{marginTop: "60px"}} className="justify-content-md-center">
                     <Col>
                         <Button onClick={() => {if(!displayPersonalList) {dispatch({type: "TOGGLE_MOVIE_LIST"})}}} style={{fontSize: "10px", marginRight: "10px"}} color={displayPersonalList ? "blue" : "grey"} >
-                            <h1 className="ButtonStyle">My Movie List</h1>
+                            <h1 className="MovieButton">My Movie List</h1>
                         </Button>
                         <Button onClick={() => {if(displayPersonalList) {dispatch({type: "TOGGLE_MOVIE_LIST"})}}} style={{fontSize: "10px"}} color={!displayPersonalList ? "blue" : "grey"} >
-                            <h1 className="ButtonStyle">My Nominations</h1>
+                            <h1 className="MovieButton">My Nominations</h1>
                         </Button>
                     </Col>
                 </Row>
