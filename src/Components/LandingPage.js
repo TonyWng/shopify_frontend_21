@@ -26,7 +26,7 @@ class LandingPage extends React.Component {
             searchResults: []
         })
 
-        fetch('http://www.omdbapi.com/?i=tt3896198&apikey=5adcacf&t=' + event.target.value + '&type=movie&plot=short')
+        fetch('https://www.omdbapi.com/?i=tt3896198&apikey=5adcacf&t=' + event.target.value + '&type=movie&plot=short')
             .then((data) => data.json())
             .then((data) => {
                 if (data.Title === undefined) {
